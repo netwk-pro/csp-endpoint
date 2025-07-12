@@ -22,17 +22,19 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ### Added
 
-- ✅ Initial Netlify Function `csp-report.js` to receive CSP violation reports via `POST`.
-- ✅ Report filtering to ignore low-value sources (e.g. `img-src`, `chrome-extension://`, etc.).
-- ✅ High-risk directive detection (`script-src`, `form-action`, etc.).
-- ✅ Deduplication logic to prevent spam from duplicate CSP reports.
-- ✅ Alert delivery to `https://ntfy.neteng.pro/csp-alerts` for high-risk CSP events.
-- ✅ Minimal static landing page (`public/index.html`) confirming the endpoint is online.
-- ✅ `netlify.toml` with:
+- Initial Netlify Function `csp-report.js` to receive CSP violation reports via `POST`.
+- Report filtering to ignore low-value sources (e.g. `img-src`, `chrome-extension://`, etc.).
+- High-risk directive detection (`script-src`, `form-action`, etc.).
+- Deduplication logic to prevent spam from duplicate CSP reports.
+- Alert delivery to `https://ntfy.neteng.pro/csp-alerts` for high-risk CSP events.
+- Minimal static landing page (`public/index.html`) confirming the endpoint is online.
+- `netlify.toml` with:
   - `functions = "netlify/functions"`
   - `publish = "public"`
-  - `NODE_VERSION = "22"` in `build.environment`
-- ✅ ESLint and Prettier configuration with ESM support, but with JSON linting removed due to compatibility friction.
+- ESLint and Prettier configuration with ESM support, but with JSON linting removed due to compatibility friction.
+- `.node-version` and `.nvmrc` for proper Node.js resolution.
+  - Ensures compatibility with Netlify’s dynamic Node version installation.
+  - Uses explicit version `24.4.0` to avoid ambiguous builds and failures.
 
 ### Changed
 
