@@ -1,6 +1,6 @@
 {
   "name": "@networkpro/csp-endpoint",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "CSP reporting endpoint for Network Pro Strategies",
   "keywords": [
     "csp",

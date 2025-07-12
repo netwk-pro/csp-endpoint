@@ -1,7 +1,16 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["neteng", "netwk", "networkpro", "ntfy", "stylelintignore", "vite"],
+  "words": [
+    "Logtail",
+    "neteng",
+    "netwk",
+    "networkpro",
+    "ntfy",
+    "stylelintignore",
+    "Supabase",
+    "vite"
+  ],
   "ignorePaths": [
     ".gitignore",
     ".gitattributes",
