@@ -3,7 +3,7 @@
 > CSP reporting endpoint for Network Pro Strategies.
 
 This Netlify Function accepts `POST` requests at:  
-<https://netwk.pro/.netlify/functions/csp-report>
+<https://csp.netwk.pro/.netlify/functions/csp-report>
 
 ## 🔐 Purpose
 
