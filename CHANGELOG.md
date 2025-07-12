@@ -18,6 +18,20 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [1.0.1] - 2025-07-12
+
+### Changed
+
+- Version bumped to `v1.0.1`.
+- `UTF-8` to `utf-8` in `public/index.html` to maintain case consistency.
+- `.gitignore` in order to align more closely with this project's requirements.
+
+### Removed
+
+- `svelte` from `eslint-validate` key in `.vscode/settings.json`.
+
+---
+
 ## [1.0.0] - 2025-07-11
 
 ### Added
@@ -52,5 +66,6 @@ https://csp.netwk.pro/.netlify/functions/csp-report
 
 <!-- Link references -->
 
-[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.1
 [1.0.0]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.0

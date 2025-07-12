@@ -4,35 +4,13 @@
 # SPDX-License-Identifier: CC-BY-4.0 OR GPL-3.0-or-later
 # This file is part of Network Pro.
 #
-# Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,svelte
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,svelte
+# Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode
 
 ### Custom ###
 .orig/
 *.local
 
-
-# SvelteKit
-.svelte-kit/*
-!.svelte-kit/tsconfig.json
-
-# Lighthouse
-.lighthouseci
-
-# Scripts
-scripts/multipleBundleCss.js
-
-# Source maps
-*.map
-
-
-### SvelteKit ###
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/build
 
 # OS
 .DS_Store
@@ -43,14 +21,6 @@ Thumbs.db
 !.env.template
 !.env.example
 !.env.test
-
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-
-# Vitest
-/reports
-
 
 ### Node ###
 # Logs
@@ -144,12 +114,13 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
+dist
 
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
-#public
+# public
 
 # vuepress build output
 .vuepress/dist
@@ -182,17 +153,14 @@ out
 .yarn/install-state.gz
 .pnp.*
 
-
 ### Node Patch ###
 # Serverless Webpack directories
 .webpack/
 
+# Optional stylelint cache
 
-### Svelte ###
-# gitignore template for the SvelteKit, frontend web component framework
-# website: https://kit.svelte.dev/
-
-package
+# SvelteKit build / generate output
+.svelte-kit
 
 ### VisualStudioCode ###
 .vscode/*
@@ -215,11 +183,4 @@ package
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,svelte
-
-
-### Playwright ###
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode

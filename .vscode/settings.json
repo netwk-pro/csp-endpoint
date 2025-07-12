@@ -14,7 +14,7 @@
   },
   // ESLint configuration
   "eslint.workingDirectories": ["D:\\Netwk-Pro\\git\\csp-endpoint"],
-  "eslint.validate": ["svelte", "javascript", "javascriptreact"],
+  "eslint.validate": ["javascript", "javascriptreact"],
   "eslint.lintTask.enable": true,
   "eslint.lintTask.options": ". --ext .mjs,.js --config eslint.config.mjs",
   "eslint.useESLintClass": true,
