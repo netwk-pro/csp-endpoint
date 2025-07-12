@@ -20,6 +20,12 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ## [1.0.1] - 2025-07-12
 
+### Added
+
+- `.github/workflows/auto-assign.yml`, `.github/workflows/dependency-review.yml`, and `.github/workflows/backup-branch.yml` GitHub Actions workflows
+- `COMMIT_GUIDE.md` to `.github` to standardize and simplify commit messages
+- `.github/ISSUE_TEMPLATE/config.yml` to provide links for reporting bugs, security issues, etc.
+
 ### Changed
 
 - Version bumped to `v1.0.1`.
