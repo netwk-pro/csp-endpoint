@@ -22,8 +22,7 @@ contact_links:
 
   - name: Stack Overflow (Internal Team)
     url: https://stack.neteng.pro
-    about:
-      Search or post questions in our internal Stack Overflow for Teams
+    about: Search or post questions in our internal Stack Overflow for Teams
       instance.
 
   - name: Contact Network Pro
