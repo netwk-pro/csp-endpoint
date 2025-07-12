@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["neteng", "netwk", "networkpro", "ntfy", "stylelintignore", "vite"],
+  "ignorePaths": [
+    ".gitignore",
+    ".gitattributes",
+    "static/sitemap.xml",
+    "static/robots.txt",
+    "src/lib/styles/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.svelte-kit/**",
+    "**/.vite/**",
+    "**/coverage/**",
+    "**/playwright-report/**"
+  ],
+  "ignoreWords": [],
+  "enableFiletypes": [
+    "javascript",
+    "typescript",
+    "json",
+    "markdown",
+    "html",
+    "svelte"
+  ],
+  "useGitignore": true
+}

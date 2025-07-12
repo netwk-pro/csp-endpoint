@@ -1,0 +1,42 @@
+{
+  "name": "@networkpro/csp-endpoint",
+  "version": "0.0.1",
+  "description": "CSP reporting endpoint for Network Pro Strategies",
+  "keywords": [
+    "csp",
+    "network pro"
+  ],
+  "license": "CC-BY-4.0 OR GPL-3.0-or-later",
+  "author": {
+    "name": "Scott Lopez",
+    "email": "github@sl.neteng.cc",
+    "url": "https://bio.neteng.pro"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "deploy": "netlify deploy",
+    "deploy:prod": "netlify deploy --prod",
+    "checkout": "npm run lint:all && npm run format",
+    "verify": "npm run checkout",
+    "delete": "rm -rf build node_modules package-lock.json",
+    "clean": "npm run delete && npm cache clean --force && npm install",
+    "upgrade": "npx npm-check-updates -u",
+    "lint": "eslint . --ext .mjs,.js",
+    "lint:fix": "eslint . --ext .mjs,.js --fix",
+    "lint:md": "npx markdownlint-cli2 \"**/*.{md,markdown}\" \"#node_modules/**\" \"#build/**\" \"#.netlify/**\"",
+    "lint:all": "npm run lint && npm run lint:md",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "browserslist": "^4.25.1",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "globals": "^16.3.0",
+    "markdownlint": "^0.38.0",
+    "markdownlint-cli2": "^0.18.1",
+    "prettier": "3.6.2"
+  }
+}
