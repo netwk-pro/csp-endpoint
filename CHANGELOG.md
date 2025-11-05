@@ -43,12 +43,12 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
   - `dependency-review.yml`
 - Bumped project version to `v1.0.2`.
 - Upgraded dependencies:
-  - `@eslint/js` `^9.31.0` -> `^9.39.1`
-  - `browserslist` `^4.25.1` -> `^4.27.0`
-  - `eslint` `^9.31.0` -> `^9.39.1`
-  - `eslint-config-prettier` `^10.1.5` -> `^10.1.8`
-  - `globals` `^16.3.0` -> `^16.5.0`
-  - `markdownlint` `^0.38.0` -> `^0.39.0`
+  - `@eslint/js` `^9.31.0` → `^9.39.1`
+  - `browserslist` `^4.25.1` → `^4.27.0`
+  - `eslint` `^9.31.0` → `^9.39.1`
+  - `eslint-config-prettier` `^10.1.5` → `^10.1.8`
+  - `globals` `^16.3.0` → `^16.5.0`
+  - `markdownlint` `^0.38.0` → `^0.39.0`
 
 ### Removed
 
