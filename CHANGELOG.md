@@ -18,6 +18,46 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [1.0.2] - 2025-11-05
+
+### Added
+
+- **Dynamic alert priority system** via `getPriority(directiveKey)`:
+  - `script-src`, `form-action`, `frame-ancestors`, `base-uri` → Priority `5`
+  - `style-src`, `connect-src` → Priority `3`
+  - All others → Priority `2`
+- `X-Title` and `X-Priority` headers to ntfy alert requests for enhanced filtering and display.
+- Introduced new `npm-run-all` `devDependency` for more efficient linting.
+- Added new unit test (`csp-report.test.mjs`) to test CSP endpoint functionality.
+
+### Changed
+
+- Refactored `csp-report.js` **Netlify function** to improve clarity, reliability, and alerting functionality:
+  - Extracted in-line cleanup logic to a reusable helper function `cleanUpOldViolations(map, ttl, now)`.
+  - Improved documentation with detailed JSDoc annotations for all functions and types.
+  - Normalized directive parsing by using `.toLowerCase()` and stripping fallback directives (e.g. `script-src-elem` → `script-src`).
+  - Added URI encoding to the `X-Title` header sent to ntfy for better display and logging.
+- Updated `.node-version` and `.nvmrc` to **Node.js v24.11.0** (LTS).
+- Updated CI workflows to utilize the latest version of `actions@checkout`:
+  - `backup-branch,yml`
+  - `dependency-review.yml`
+- Bumped project version to `v1.0.2`.
+- Upgraded dependencies:
+  - `@eslint/js` `^9.31.0` → `^9.39.1`
+  - `browserslist` `^4.25.1` → `^4.27.0`
+  - `eslint` `^9.31.0` → `^9.39.1`
+  - `eslint-config-prettier` `^10.1.5` → `^10.1.8`
+  - `globals` `^16.3.0` → `^16.5.0`
+  - `markdownlint` `^0.38.0` → `^0.39.0`
+
+### Removed
+
+- Suppression of lower-priority CSP reports (e.g. `style-src`, `connect-src`) from being sent to `ntfy.sh`.
+  - All CSP reports are now sent unless blocked by the duplicate rate limiter.
+  - Only browser extension violations (`chrome-extension://`, `moz-extension://`) are still suppressed.
+
+---
+
 ## [1.0.1] - 2025-07-12
 
 ### Added
@@ -72,6 +112,7 @@ https://csp.netwk.pro/.netlify/functions/csp-report
 
 <!-- Link references -->
 
-[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.2
 [1.0.1]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.1
 [1.0.0]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.0

@@ -15,8 +15,8 @@ This file is part of Network Pro.
  * invocation cost. Alerts on high-risk violations via ntfy topic.
  *
  * @module netlify/functions
- * @author SunDevil311
- * @updated 2025-07-11
+ * @author Scott Lopez
+ * @updated 2025-11-05
  */
 
 /**
@@ -58,23 +58,12 @@ export const handler = async (event, _context) => {
     const violated = report['violated-directive'] ?? '';
     const blockedUri = report['blocked-uri'] ?? '';
 
-    // Filter: Skip noisy or unactionable reports
-    const ignored = [
-      violated.startsWith('img-src'),
-      blockedUri === '',
-      blockedUri === 'eval',
-      blockedUri === 'about',
-      blockedUri.startsWith('chrome-extension://'),
-      blockedUri.startsWith('moz-extension://'),
-      !report['source-file'],
-      !report['document-uri'],
-    ].some(Boolean);
-
-    if (ignored) {
-      console.log('[CSP] Ignored low-value violation:', {
-        directive: violated,
-        uri: blockedUri,
-      });
+    // Filter only known useless reports
+    if (
+      blockedUri.startsWith('chrome-extension://') ||
+      blockedUri.startsWith('moz-extension://')
+    ) {
+      console.log('[CSP] Ignored browser extension violation:', blockedUri);
       return { statusCode: 204 };
     }
 
@@ -97,8 +86,8 @@ export const handler = async (event, _context) => {
 };
 
 /**
- * Sends a high-priority alert to your ntfy topic for high-risk CSP violations.
- * Applies rate-limiting to avoid sending duplicate alerts within 60 seconds.
+ * Sends a high-priority alert to your ntfy topic for CSP violations.
+ * Applies rate-limiting to avoid sending duplicate alerts within TTL.
  *
  * @param {string} violated - The violated CSP directive
  * @param {string} blockedUri - The URI that was blocked
@@ -106,20 +95,7 @@ export const handler = async (event, _context) => {
  * @returns {Promise<void>}
  */
 async function sendToNtfy(violated, blockedUri, report) {
-  const highRiskDirectives = [
-    'script-src',
-    'form-action',
-    'frame-ancestors',
-    'base-uri',
-  ];
-
-  const directiveKey = violated.split(' ')[0]; // strip fallback values or sources
-  const isHighRisk = highRiskDirectives.includes(directiveKey);
-
-  console.log(
-    `[CSP] Directive ${directiveKey} is ${isHighRisk ? '' : 'not '}high-risk`,
-  );
-  if (!isHighRisk) return;
+  const directiveKey = violated.split(' ')[0].toLowerCase(); // e.g., "script-src" from "script-src-elem"
 
   const key = `${violated}|${blockedUri}`;
   const now = Date.now();
@@ -136,12 +112,8 @@ async function sendToNtfy(violated, blockedUri, report) {
   // Record the current timestamp
   recentViolations.set(key, now);
 
-  // Cleanup old entries (memory-safe for low volume)
-  for (const [k, t] of recentViolations.entries()) {
-    if (now - t > VIOLATION_TTL_MS) {
-      recentViolations.delete(k);
-    }
-  }
+  // Clean up expired entries
+  cleanUpOldViolations(recentViolations, VIOLATION_TTL_MS, now);
 
   const topicUrl = 'https://ntfy.neteng.pro/csp-alerts';
 
@@ -158,9 +130,46 @@ async function sendToNtfy(violated, blockedUri, report) {
     method: 'POST',
     headers: {
       'Content-Type': 'text/plain',
-      'X-Title': 'High-Risk CSP Violation',
-      'X-Priority': '5',
+      'X-Title': `CSP Violation: ${directiveKey} → ${encodeURI(blockedUri)}`,
+      'X-Priority': getPriority(directiveKey),
     },
     body: message,
   });
+}
+
+/**
+ * Returns a priority level for a CSP directive (1 = min, 5 = max).
+ *
+ * @param {string} directiveKey - The base CSP directive (e.g., "script-src")
+ * @returns {'1' | '2' | '3' | '4' | '5'} - ntfy priority as a string
+ */
+function getPriority(directiveKey) {
+  switch (directiveKey) {
+    case 'script-src':
+    case 'form-action':
+    case 'frame-ancestors':
+    case 'base-uri':
+      return '5'; // Max urgency
+    case 'style-src':
+    case 'connect-src':
+      return '3'; // Default
+    default:
+      return '2'; // Low
+  }
+}
+
+/**
+ * Removes expired entries from the Map based on TTL.
+ *
+ * @param {Map<string, number>} map - The map of recent violations
+ * @param {number} ttl - Time-to-live in milliseconds
+ * @param {number} now - Current timestamp (Date.now())
+ * @returns {void}
+ */
+function cleanUpOldViolations(map, ttl, now) {
+  for (const [key, timestamp] of map.entries()) {
+    if (now - timestamp > ttl) {
+      map.delete(key);
+    }
+  }
 }
