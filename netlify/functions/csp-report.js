@@ -47,7 +47,8 @@ export const handler = async (event, _context) => {
   }
 
   try {
-    const body = JSON.parse(event.body);
+    const rawBody = Buffer.from(event.body, 'utf8').toString();
+    const body = JSON.parse(rawBody);
     const report = body['csp-report'];
 
     // Ignore if report is missing or malformed
@@ -79,7 +80,7 @@ export const handler = async (event, _context) => {
       line: report['line-number'],
     });
   } catch (err) {
-    console.warn('[CSP] Failed to parse CSP report:', err.message);
+    console.warn(`[CSP] Failed to parse CSP report: ${String(err.message)}`);
   }
 
   return { statusCode: 204 };
