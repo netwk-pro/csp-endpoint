@@ -18,6 +18,21 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [1.0.4] - 2025-11-16
+
+### Changed
+
+- Updated error logging to handle potentially non-string `Error.message` values safely using `String()` fallback.
+- Bumped project version to `v1.0.4`.
+
+### Fixed
+
+- Resolved CSP reporting failure caused by invalid Unicode in HTTP headers (`→` / U+2192) which triggered `ByteString` conversion errors.
+- Sanitized `X-Title` header in `sendToNtfy()` to replace non-ASCII directional arrows with ASCII-safe alternatives (`->`) for compatibility with HTTP/1.1 and Netlify’s internal runtime.
+- Ensured CSP report body is parsed as UTF-8 by wrapping `event.body` in `Buffer.from(..., 'utf8').toString()` to prevent coercion issues.
+
+---
+
 ## [1.0.3] - 2025-11-18
 
 ### Changed
@@ -131,7 +146,8 @@ https://csp.netwk.pro/.netlify/functions/csp-report
 
 <!-- Link references -->
 
-[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.4
 [1.0.3]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.3
 [1.0.2]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.2
 [1.0.1]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.1

@@ -131,7 +131,7 @@ async function sendToNtfy(violated, blockedUri, report) {
     method: 'POST',
     headers: {
       'Content-Type': 'text/plain',
-      'X-Title': `CSP Violation: ${directiveKey} → ${encodeURI(blockedUri)}`,
+      'X-Title': `CSP Violation: ${directiveKey} -> ${encodeURI(blockedUri)}`,
       'X-Priority': getPriority(directiveKey),
     },
     body: message,
