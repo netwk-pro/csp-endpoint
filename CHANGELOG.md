@@ -18,6 +18,25 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [1.0.3] - 2025-11-18
+
+### Changed
+
+- Replaced direct `JSON.parse(event.body)` with UTF-8-safe decoding using `Buffer.from(..., 'utf8').toString()` for consistent parsing across environments.
+- Disabled `markdownlint-cli2` rule `MD060` in `.markdownlint.mjs`, as it's unnecessarily strict and doesn't affect render output
+- Bumped project version to `v1.0.3`.
+- Updated dependencies:
+  - `browserslist` `^4.27.0` → `^4.28.0`
+  - `markdownlint-cli2` `^0.18.1` → `^0.19.0`
+
+### Fixed
+
+- Corrected character encoding issue in CSP violation reports by explicitly decoding the `event.body` as UTF-8 prior to parsing.
+- Resolved `ByteString` coercion error caused by high Unicode characters (e.g., `→`) in CSP violation payloads.
+- Hardened error logging by wrapping non-ASCII `Error.message` values with `String()` to ensure safe console output.
+
+---
+
 ## [1.0.2] - 2025-11-05
 
 ### Added
@@ -112,7 +131,8 @@ https://csp.netwk.pro/.netlify/functions/csp-report
 
 <!-- Link references -->
 
-[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.3
 [1.0.2]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.2
 [1.0.1]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.1
 [1.0.0]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.0

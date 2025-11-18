@@ -1,6 +1,6 @@
 {
   "name": "@networkpro/csp-endpoint",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CSP reporting endpoint for Network Pro Strategies",
   "keywords": [
     "csp",
@@ -21,7 +21,8 @@
     "verify": "npm run checkout",
     "delete": "rm -rf node_modules package-lock.json",
     "clean": "npm run delete && npm cache clean --force && npm install",
-    "upgrade": "npx npm-check-updates -u",
+    "upgrade": "ncu -u --format group --color",
+    "check:updates": "ncu --format group --color",
     "lint": "eslint . --ext .mjs,.js",
     "lint:fix": "eslint . --ext .mjs,.js --fix",
     "lint:md": "npx markdownlint-cli2 \"**/*.{md,markdown}\" \"#node_modules/**\" \"#.netlify/**\"",
@@ -34,14 +35,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "browserslist": "^4.27.0",
+    "browserslist": "^4.28.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
     "markdownlint": "^0.39.0",
-    "markdownlint-cli2": "^0.18.1",
+    "markdownlint-cli2": "^0.19.0",
     "npm-run-all": "^4.1.5",
     "prettier": "3.6.2",
-    "vitest": "^4.0.7"
+    "vitest": "3.2.4"
   }
 }
