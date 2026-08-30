@@ -24,6 +24,7 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 - Bumped project version to `v1.0.5`.
 - Updated `.node-version` and `.nvmrc` from Node.js `24.11.0` to `24.20.0`.
+- Removed `vitest` from the npm-check-updates rejection list so future updates are detected.
 - Upgraded GitHub Actions:
   - `pozil/auto-assign-issue` `v2` → `v4`
   - `actions/checkout` `v5` → `v7`
@@ -37,10 +38,24 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
   - `globals` `^16.5.0` → `^17.11.0`
   - `markdownlint` `^0.39.0` → `^0.41.1`
   - `markdownlint-cli2` `^0.19.0` → `^0.23.2`
+  - `vitest` `3.2.4` → `3.2.7`
 
 ### Fixed
 
 - Corrected indentation for the GPL license reference links in `LICENSE.md`.
+
+### Security
+
+- Resolved all 10 npm audit findings (8 high and 2 critical) through the Vitest patch above and the following transitive dependency updates:
+  - `brace-expansion` `1.1.12` → `1.1.18`
+  - `flatted` `3.3.3` → `3.4.4`
+  - `minimatch` `3.1.2` → `3.1.5`
+  - `nanoid` `3.3.11` → `3.3.18`
+  - `picomatch` `4.0.3` → `4.0.7`
+  - `postcss` `8.5.6` → `8.5.26`
+  - `rollup` `4.53.2` → `4.63.1`
+  - `shell-quote` `1.8.3` → `1.10.0`
+  - `vite` `7.2.2` → `7.3.6`
 
 ---
 
