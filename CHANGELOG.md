@@ -18,6 +18,32 @@ This project adheres to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 
 ---
 
+## [1.0.5] - 2026-08-30
+
+### Changed
+
+- Bumped project version to `v1.0.5`.
+- Updated `.node-version` and `.nvmrc` from Node.js `24.11.0` to `24.20.0`.
+- Upgraded GitHub Actions:
+  - `pozil/auto-assign-issue` `v2` → `v4`
+  - `actions/checkout` `v5` → `v7`
+  - `actions/dependency-review-action` `v4` → `v5`
+- Extended the copyright notice in the CSP report function through 2026.
+- Updated dependencies:
+  - `browserslist` `^4.28.0` → `^4.28.8`
+  - `prettier` `3.6.2` → `3.9.6`
+  - `@eslint/js` `^9.39.1` → `^10.0.1`
+  - `eslint` `^9.39.1` → `^10.9.1`
+  - `globals` `^16.5.0` → `^17.11.0`
+  - `markdownlint` `^0.39.0` → `^0.41.1`
+  - `markdownlint-cli2` `^0.19.0` → `^0.23.2`
+
+### Fixed
+
+- Corrected indentation for the GPL license reference links in `LICENSE.md`.
+
+---
+
 ## [1.0.4] - 2025-11-16
 
 ### Changed
@@ -146,9 +172,12 @@ https://csp.netwk.pro/.netlify/functions/csp-report
 
 <!-- Link references -->
 
-[Unreleased]: https://github.com/netwk-pro/netwk-pro.github.io/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/netwk-pro/csp-endpoint/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.5
 [1.0.4]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.4
 [1.0.3]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.3
 [1.0.2]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.2
 [1.0.1]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.1
 [1.0.0]: https://github.com/netwk-pro/csp-endpoint/releases/tag/v1.0.0
+
+<!-- cspell:ignore pozil -->
